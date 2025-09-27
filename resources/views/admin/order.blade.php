@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="card card-info card-outline p-0 rounded-0">
                     <div class="card-header border-4 border-bottom border-info">
-                        <form class="d-flex gap-4" method="get" action="<?= ('admin/order') ?>">
+                        <form class="d-flex gap-4" method="get" action="{{route('admin.order')}}">
                             <div class="d-inline-flex align-items-center text-nowrap" style="font-weight:bold;">Order Id</div>
                             <input class="form-control me-2" type="search" name="query" placeholder="Search">
                             <button class="btn btn-sm btn-success" type="submit">Search</button>
@@ -30,37 +30,39 @@
                         <table class="table table-hover text-center">
                             <thead>
                                 <tr>
-                                    <th>Order Id</th>
-                                    <th>Deliver To</th>
-                                    <th>Date</th>
-                                    <th>Price ($)</th>
-                                    <th>Status</th>
-                                    <th>Who Ordered</th>
-                                    <th>Action</th>
+                                    <th class="text-nowrap">Order Id</th>
+                                    <th class="text-nowrap">Deliver To</th>
+                                    <th class="text-nowrap">Date</th>
+                                    <th class="text-nowrap">Price ($)</th>
+                                    <th class="text-nowrap">Status</th>
+                                    <th class="text-nowrap">Who Ordered</th>
+                                    <th class="text-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($orders)): ?>
-                                    <?php foreach ($orders as $order): ?>
+                                 @if (!empty($orders))
+
+
+                                   @foreach ($orders as $order)
                                         <tr class="align-middle">
-                                            <td><?= $order['id'] ?></td>
-                                            <td><?= $order['delivery_add'] ?></td>
-                                            <td><?= $order['formatted_date'] ?></td>
-                                            <td><?= $order['total'] ?></td>
-                                            <td><?= $order['status'] ?></td>
-                                            <td><?= $order['firstname'] ?></td>
+                                            <td>{{$order->id ?? '-'}}</td>
+                                            <td>{{$order->delivery ?? '-'}}</td>
+                                            <td>{{$order->orderdate ?? '-'}}</td>
+                                            <td>{{$order->total ?? '-'}}</td>
+                                            <td>{{$order->status ?? '-'}}</td>
+                                            <td>{{$order->fullname ?? '-'}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-3">
-                                                    <a href="<?= ('admin/order/edit/' . $order['id']) ?>" class="btn btn-sm bg-info text-white">VIEW/EDIT</a>
-                                                    <a href="<?= ('admin/order/cancel/' . $order['id']) ?>" class="btn btn-sm bg-warning text-white">CANCEL</a>
-                                                    <a href="<?= ('admin/order/delete/' . $order['id']) ?>" class="btn btn-sm bg-danger text-white">DELETE</a>
+                                                    <a  href="{{ ('admin/order/edit/' . $order->id) }}" class="btn btn-sm bg-info text-white text-nowrap">VIEW/EDIT</a>
+                                                    <a href="{{('admin/order/cancel/' . $order->id)}}" class="btn btn-sm bg-warning text-white">CANCEL</a>
+                                                    <a href="{{ ('admin/order/delete/' . $order->id) }}" class="btn btn-sm bg-danger text-white">DELETE</a>
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                                  @endforeach
+                                @else
                                     <tr><td colspan="7" class="text-danger">No record found</td></tr>
-                                <?php endif; ?>
+                                @endif
                             </tbody>
                         </table>
                     </div>

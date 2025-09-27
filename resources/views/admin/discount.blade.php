@@ -1,4 +1,4 @@
-@include('admin.header')
+@include('admin.header',['title'=>'Discount'])
 <main class="app-main" id="main" tabindex="-1">
     <div class="app-content-header">
         <div class="container-fluid">
@@ -50,29 +50,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($discounts)): ?>
-                                    <?php foreach ($discounts as $row): ?>
+                                @if (!empty($discounts))
+
+
+                                    @foreach ($discounts as $row)
                                         <tr class="align-middle">
-                                            <td><?= $row['name'] ?></td>
-                                            <td><?= $row['valid_form'] ?></td>
-                                            <td><?= $row['valid_till'] === '00-00-0000' ? 'Unset' : $row['valid_till'] ?></td>
+                                            <td>{{ $row->name ?? '-'}}</td>
+                                            <td>{{ $row->valid_form ?? '-'}}</td>
+                                            <td>{{ $row->valid_to === '00-00-0000' ? 'Unset' : $row->valid_to }}</td>
                                             <td>
-                                                <?= trim($row['type']) === 'Dolar' ? '&dollar;' : '' ?>
-                                                <?= $row['amount'] ?>
-                                                <?= trim($row['type']) === 'Percentage' ? '&percnt;' : '' ?>
+                                                {{trim($row->type) === 'Dolar' ? '$' : '' }}
+                                                {{$row->amount ?? '-'}}
+                                                {{trim($row->type) === 'Percentage' ? '%' : '' }}
                                             </td>
-                                            <td><?= $row['status'] ?></td>
+                                            <td>{{ $row->status}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-3">
-                                                    <a href="<?= ('admin/discount/edit/' . $row['id']) ?>" class="btn btn-sm bg-info text-white">EDIT</a>
-                                                    <a href="<?= ('admin/discount/delete/' . $row['id']) ?>" class="btn btn-sm bg-danger text-white">DELETE</a>
+                                                    <a href="<?= ('admin/discount/edit/' . $row->id) ?>" class="btn btn-sm bg-info text-white">EDIT</a>
+                                                    <a href="<?= ('admin/discount/delete/' . $row->id) ?>" class="btn btn-sm bg-danger text-white">DELETE</a>
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                                    @endforeach
+                                @else
                                     <tr><td colspan="6" class="text-danger">No record found</td></tr>
-                                <?php endif; ?>
+                                @endif
                             </tbody>
                         </table>
                     </div>

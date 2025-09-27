@@ -39,26 +39,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($customers)): ?>
-                                    <?php foreach ($customers as $customer): ?>
+                                @if (!empty($customers))
+                                    @foreach ($customers as $customer)
                                         <tr class="align-middle">
-                                            <td><?= $customer['name'] ?></td>
-                                            <td><?= $customer['email'] ?></td>
-                                            <td><?= $customer['telephone'] ?></td>
-                                            <td><?= $customer['status'] ?></td>
-                                            <td><?= $customer['total_orders'] ?></td>
+                                            <td> {{ $customer->fullname}}</td>
+                                            <td> {{ $customer->email }}</td>
+                                            <td> {{ $customer->telephone}}</td>
+                                            <td> {{ $customer->status}}</td>
+                                            <td> {{ $customer->total_orders}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-3">
-                                                    <a href="<?= ('admin/customer/edit/' . $customer['id']) ?>" class="btn btn-sm bg-info text-white">EDIT</a>
-                                                    <a href="<?= ('admin/customer/order/' . $customer['id']) ?>" class="btn btn-sm bg-warning text-white">Orders</a>
-                                                    <a href="<?= ('admin/customer/delete/' . $customer['id']) ?>" class="btn btn-sm bg-danger text-white">Delete</a>
+                                                    <a href="{{ ('admin/customer/edit/' . $customer->id) }}" class="btn btn-sm bg-info text-white">EDIT</a>
+                                                    <a href="{{ ('admin/customer/order/' . $customer->id) }}" class="btn btn-sm bg-warning text-white">Orders</a>
+                                                    <a href="{{ ('admin/customer/delete/' . $customer->id) }}" class="btn btn-sm bg-danger text-white">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                                     @endforeach
+                                @else
                                     <tr><td colspan="6" class="text-danger">No record found</td></tr>
-                                <?php endif; ?>
+                                @endif
                             </tbody>
                         </table>
                     </div>

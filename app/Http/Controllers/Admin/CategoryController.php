@@ -21,4 +21,8 @@ class CategoryController extends Controller
             ->get();
         return view('admin.category', compact('categories'));
     }
+
+    public static function add(){
+        return view('admin.add_category');
+    }
 }

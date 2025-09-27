@@ -19,4 +19,10 @@ class SubcategoryController extends Controller
             ->toArray();
         return view('admin.subcategory',compact('subcategories'));
     }
+
+    public static function add(){
+        return view('admin.add_subcategory');       
+    }
+
+
 }

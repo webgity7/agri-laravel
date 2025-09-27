@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-body card-info card-outline rounded-0">
                         <div class="d-flex justify-content-end">
-                            <a href="{{ 'admin/category/add' }}" class="btn btn-success mb-2">Add New</a>
+                            <a href="{{route('admin.add.category')}}" class="btn btn-success mb-2">Add New</a>
                         </div>
                         <table class="table table-hover text-center">
                             <thead>

@@ -1,5 +1,5 @@
 
-@include('admin.header')
+@include('admin.header',['title'=>'Settings'])
 <main class="app-main" id="main" tabindex="-1">
     <div class="app-content-header">
         <div class="container-fluid">

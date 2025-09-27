@@ -25,17 +25,15 @@ class Admin extends Model
         return $user ? $user->toArray() : null;
     }
 
-    public static function dashbord(){
-     return [
-        'product' => Product::count(),
-        'category' => Category::count(),
-        'customer' => Customers::count(),
-        'discount' => Discount::count(),
-        'subcategory' => Subcategory::count(),
-        'orders'=>orders::count()
-    ];
+    public static function dashbord()
+    {
+        return [
+            'product' => Product::where('deleted', '!=','Yes')->count(),
+            'category' => Category::count(),
+            'customer' => Customers::where('deleted', '!=','Yes')->count(),
+            'discount' => Discount::where('deleted', '!=','Yes')->count(),
+            'subcategory' => Subcategory::count(),
+            'orders' => Orders::where('deleted', '!=','Yes')->count()
+        ];
     }
-
-
-
 }

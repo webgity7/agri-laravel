@@ -39,7 +39,7 @@
 
                     <div class="card-body card-info card-outline rounded-0">
                         <div class="d-flex justify-content-end">
-                            <a href="{{ 'admin/subcategory/add' }}" class="btn btn-success mb-2">Add New</a>
+                            <a href="{{ route('admin.add.subcategory') }}" class="btn btn-success mb-2">Add New</a>
                         </div>
 
                         <table class="table table-hover text-center">
